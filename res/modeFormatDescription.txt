@@ -1,0 +1,9 @@
+MaxAdd
+MaxSub
+MaxMul
+MaxDiv
+MaxDivK
+MaxSqr
+MaxSingle
+MaxSpacesForArgument
+MaxSpacesForAnswer
