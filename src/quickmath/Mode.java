@@ -1,5 +1,10 @@
 package quickmath;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 /**
  * Created by Igor on 08-Aug-15.
  */
@@ -83,18 +88,41 @@ public class Mode {
     }
 
     private void setDefaultValues() {
-        maxAdd = 10;
-        maxSub = 10;
-        maxMul = 10;
-        maxDiv = 10;
-        maxDivK = 10;
-        maxSqr = 10;
-        maxSingle = 10;
-        maxSize = 3;
+        maxAdd = 9999;
+        maxSub = 9999;
+        maxMul = 99;
+        maxDiv = 50;
+        maxDivK = 20;
+        maxSqr = 99;
+        maxSingle = 999;
+        maxSize = 4;
+        maxAnswerSize = 5;
     }
 
     private boolean loadFromFile(String fileName) {
-        return false;
+        BufferedReader in = null;
+
+        try {
+            in = new BufferedReader(new FileReader(fileName));
+
+            maxAdd = Integer.parseInt(in.readLine());
+            maxSub = Integer.parseInt(in.readLine());
+            maxMul = Integer.parseInt(in.readLine());
+            maxDiv = Integer.parseInt(in.readLine());
+            maxDivK = Integer.parseInt(in.readLine());
+            maxSqr = Integer.parseInt(in.readLine());
+            maxSingle = Integer.parseInt(in.readLine());
+            maxSize = Integer.parseInt(in.readLine());
+            maxAnswerSize = Integer.parseInt(in.readLine());
+
+            in.close();
+        } catch (FileNotFoundException e) {
+            return false;
+        } catch (IOException e) {
+            return false;
+        }
+
+        return true;
     }
 
 
