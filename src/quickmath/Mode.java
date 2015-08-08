@@ -12,7 +12,7 @@ public class Mode {
     private int maxSqr;
     private int maxSingle;
     private int maxSize;
-//    private long maxAnswerSize;
+    private int maxAnswerSize;
 
     public Mode() {
         setDefaultValues();
@@ -24,8 +24,62 @@ public class Mode {
         }
     }
 
-    private void calculateMaxSize() {
+    private void calculateSizesWithAdd() {
+        int digits = getDigits(maxAdd);
+        maxSize = digits > maxSize ? digits : maxSize;
 
+        digits = getDigits(maxAdd + maxAdd);
+        maxAnswerSize = digits > maxAnswerSize ? digits : maxAnswerSize;
+    }
+
+    private void calculateSizesWithSub() {
+        int digits = getDigits(maxSub);
+        maxSize = digits > maxSize ? digits : maxSize;
+
+        digits = getDigits(maxSub);
+        maxAnswerSize = digits > maxAnswerSize ? digits : maxAnswerSize;
+    }
+
+    private void calculateSizesWithMul() {
+        int digits = getDigits(maxMul);
+        maxSize = digits > maxSize ? digits : maxSize;
+
+        digits = getDigits(maxMul * maxMul);
+        maxAnswerSize = digits > maxAnswerSize ? digits : maxAnswerSize;
+    }
+
+    private void calculateSizesWithDiv() {
+        int digits = getDigits(maxDiv * maxDivK);
+        maxSize = digits > maxSize ? digits : maxSize;
+
+        digits = getDigits(maxDivK);
+        maxAnswerSize = digits > maxAnswerSize ? digits : maxAnswerSize;
+    }
+
+    private void calculateSizesWithSqr() {
+        int digits = getDigits(maxSqr);
+        maxSize = digits > maxSize ? digits : maxSize;
+
+        digits = getDigits(maxSqr * maxSqr);
+        maxAnswerSize = digits > maxAnswerSize ? digits : maxAnswerSize;
+    }
+
+    private void calculateSizesWithSingle() {
+        int digits = getDigits(maxSingle);
+        maxSize = digits > maxSize ? digits : maxSize;
+
+        digits = getDigits(maxSingle * 9);
+        maxAnswerSize = digits > maxAnswerSize ? digits : maxAnswerSize;
+    }
+
+    public static int getDigits(int number) {
+        int counter = 1;
+        while (number >= 10) {
+            number /= 10;
+            counter++;
+        }
+
+        return counter;
     }
 
     private void setDefaultValues() {
@@ -50,6 +104,7 @@ public class Mode {
 
     public void setMaxAdd(int maxAdd) {
         this.maxAdd = maxAdd;
+        calculateSizesWithAdd();
     }
 
     public int getMaxSub() {
@@ -58,6 +113,7 @@ public class Mode {
 
     public void setMaxSub(int maxSub) {
         this.maxSub = maxSub;
+        calculateSizesWithSub();
     }
 
     public int getMaxMul() {
@@ -66,6 +122,7 @@ public class Mode {
 
     public void setMaxMul(int maxMul) {
         this.maxMul = maxMul;
+        calculateSizesWithMul();
     }
 
     public int getMaxDiv() {
@@ -74,6 +131,7 @@ public class Mode {
 
     public void setMaxDiv(int maxDiv) {
         this.maxDiv = maxDiv;
+        calculateSizesWithDiv();
     }
 
     public int getMaxDivK() {
@@ -82,6 +140,7 @@ public class Mode {
 
     public void setMaxDivK(int maxDivK) {
         this.maxDivK = maxDivK;
+        calculateSizesWithDiv();
     }
 
     public int getMaxSqr() {
@@ -90,6 +149,7 @@ public class Mode {
 
     public void setMaxSqr(int maxSqr) {
         this.maxSqr = maxSqr;
+        calculateSizesWithSqr();
     }
 
     public int getMaxSingle() {
@@ -98,5 +158,14 @@ public class Mode {
 
     public void setMaxSingle(int maxSingle) {
         this.maxSingle = maxSingle;
+        calculateSizesWithSingle();
+    }
+
+    public int getMaxSize() {
+        return maxSize;
+    }
+
+    public int getMaxAnswerSize() {
+        return maxAnswerSize;
     }
 }
