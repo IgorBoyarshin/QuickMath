@@ -96,7 +96,7 @@ public class Mode {
         maxSqr = 99;
         maxSingle = 999;
         maxSize = 4;
-        maxAnswerSize = 5;
+        maxAnswerSize = 6;
     }
 
     private boolean loadFromFile(String fileName) {
